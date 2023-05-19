@@ -1,0 +1,122 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    background: linear-gradient(275deg, #f95480, #ffd6ef);
+    min-height: 100vh;
+    padding: 10px;
+}
+
+.container {
+    padding: 30px 83px 40px;
+    margin: 100px auto;
+    width: 450px;
+    background: #ffffffcc;
+    border-radius: 10px;
+}
+
+.container__text-h1 {
+    color: #f95480;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.container__tasks {
+    display: flex;
+    align-items: center;
+}
+
+.container__tasks__input {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border: none;
+    height: 21px;
+    width: 228px;
+    padding-left: 10px;
+}
+
+.container__tasks__button {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border: none;
+    color: #f95480;
+    background-color: #ffffff;
+    padding: 3px 5px;
+    width: 56px;
+    cursor: pointer;
+}
+
+.container__tasks-list {
+    margin-top: 15px;
+}
+
+.container__tasks-list li {
+    list-style: none;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    padding: 0px 15px 5px 28px;
+    background-image: url(./assets/png/recycle-bin.png);
+    background-size: 18px;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    width: 270px;
+}
+
+.container__tasks-list__done-task {
+    text-decoration: line-through;
+    color: rgb(145, 145, 145);
+}
+
+.container__tasks-list li::before {
+    background-image: url('./assets/png/checked.png');
+    width: 18px;
+    height: 18px;
+}
+
+.container__tasks-list li::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-image: url('./assets/png/select.png');
+    background-size: cover;
+    background-position: center;
+    top: 0;
+    left: 0;
+}
+
+.container__filter-buttons {
+    margin-top: 15px;
+    display: flex;
+}
+
+.button-filter {
+    border: none;
+    color: white;
+    background-color: #f95480;
+    padding: 3px 5px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.container__filter-buttons__all {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.container__filter-buttons__donet {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+/* 
+li {
+    background-image: url("./assets/png/recycle-bin.png");
+    width: 18px;
+    height: 18px;
+    margin-left: 180px;
+} */
