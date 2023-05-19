@@ -36,6 +36,7 @@
     height: 21px;
     width: 228px;
     padding-left: 10px;
+    outline: none;
 }
 
 .container__tasks__button {
@@ -53,32 +54,30 @@
     margin-top: 15px;
 }
 
-.container__tasks-list li {
+.container__tasks-list__done-task {
     list-style: none;
     user-select: none;
     cursor: pointer;
     position: relative;
     display: flex;
-    padding: 0px 15px 5px 28px;
-    background-image: url(./assets/png/recycle-bin.png);
-    background-size: 18px;
-    background-repeat: no-repeat;
-    background-position-x: right;
-    width: 270px;
+    padding: 0px 40px 10px 28px;
+    width: 280px;
+    overflow-wrap: break-word;
+    word-break: break-all;
 }
 
-.container__tasks-list__done-task {
+/* .container__tasks-list__done-task {
     text-decoration: line-through;
     color: rgb(145, 145, 145);
-}
+} */
 
-.container__tasks-list li::before {
+.container__tasks-list__done-task::before {
     background-image: url('./assets/png/checked.png');
     width: 18px;
     height: 18px;
 }
 
-.container__tasks-list li::before {
+.container__tasks-list__done-task::before {
     content: '';
     position: absolute;
     width: 18px;
@@ -113,10 +112,34 @@
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
 }
-/* 
-li {
-    background-image: url("./assets/png/recycle-bin.png");
+
+.container__tasks-list__trash {
+    position: absolute;
+    right: 0;
     width: 18px;
+    font-size: 15px;
+    padding: 0 0 0 5px;
     height: 18px;
-    margin-left: 180px;
-} */
+    color: #f95480;
+}
+
+.container__tasks-list__trash:hover {
+    color: #cc0202;
+    transition: 0.4s;
+}
+
+.container__tasks-list__edit {
+    width: 18px;
+    font-size: 15px;
+    height: 18px;
+    color: #f95480;
+    position: absolute;
+    right: 21px;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.container__tasks-list__edit:hover {
+    color: #bdbdbd;
+    transition: 0.4s;
+}
