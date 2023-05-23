@@ -30,17 +30,38 @@ containerForm.addEventListener('submit', event => {
 const tasksList = document.querySelector('.container__tasks-list');
 
 const showTodo = todo => {
+    const item = document.querySelector(`[data-key='${todo.id}']`);
+
     const isCompleted = todo.completed ? 'done' : '';
     const list = document.createElement('li');
 
-    list.setAttribute('class', `todo-item ${isCompleted}`);
+    list.setAttribute('class', `container__tasks-list__done-task ${isCompleted}`);
     list.setAttribute('data-key', todo.id);
 
     list.innerHTML = `
-    <input id="${todo.id}" type="checkbox"/>
-    <label for="${todo.id}" class="tick js-tick"></label>
-    <span>${todo.text}</span>
+    <input id="${todo.id}" type='checkbox' class='container__tasks-list__checked'/>
+    <label for="${todo.id}" class="completed js-completed"></label>
+    <span class='todo-text'>${todo.text}</span>
+    <button class="container__tasks-list__edit">&#9998;</button>
+    <button class="container__tasks-list__trash">&#10008;</button>
     `;
 
-    tasksList.appendChild(list);
+    if (item) {
+        tasksList.replaceChild(list, item);
+    } else {
+        tasksList.appendChild(list);
+    }
 }
+
+tasksList.addEventListener('click', event => {
+    if (event.target.classList.contains('js-completed')) {
+        const itemKey = event.target.parentElement.dataset.key;
+        toggleCompleted(itemKey);
+    }
+});
+
+const toggleCompleted = key => {
+    const index = todoList.findIndex(item => item.id === Number(key));
+    todoList[index].completed = !todoList[index].completed;
+    showTodo(todoList[index]);
+};
