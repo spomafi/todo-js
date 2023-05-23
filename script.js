@@ -1,33 +1,46 @@
-const inputTask = document.getElementById('tasks-input');
-const listTasks = document.querySelector('.container__tasks-list');
+const todoList = [];
+
+const addTodo = text => {
+    const todo = {
+        text,
+        id: Date.now(), 
+        completed: false
+    };
+
+    todoList.push(todo);
+    showTodo(todo);
+};
+
+const containerForm = document.querySelector('.container__form');
+const inputTodo = document.querySelector('.container__form__input');
 const buttonTasks = document.getElementById('tasks-button');
 
+containerForm.addEventListener('submit', event => {
+    event.preventDefault();
 
-buttonTasks.addEventListener('click', () => {
-    if(inputTask.value === '') {
+    const text = inputTodo.value.trim();
+
+    if (text === '') {
         return
-    } else {
-        let liInput = document.createElement('li');
-        liInput.classList.add('container__tasks-list__done-task')
-        liInput.innerHTML = inputTask.value;
-        listTasks.appendChild(liInput);
-
-        let spanDelete = document.createElement('span');
-        spanDelete.classList.add('container__tasks-list__trash')
-        spanDelete.innerHTML = '&#10008;';
-        liInput.appendChild(spanDelete);
-
-        let pencilEdit =  document.createElement('span');
-        pencilEdit.classList.add('container__tasks-list__edit')
-        pencilEdit.innerHTML = '&#9998;';
-        liInput.appendChild(pencilEdit);
     }
+    addTodo(text);
+    inputTodo.value = ''
+});
 
-    inputTask.value = '';
-})
+const tasksList = document.querySelector('.container__tasks-list');
 
-inputTask.addEventListener('keyup', event => {
-    if (event.code === 'Enter') {
-        buttonTasks.click()
-    }
-})
+const showTodo = todo => {
+    const isCompleted = todo.completed ? 'done' : '';
+    const list = document.createElement('li');
+
+    list.setAttribute('class', `todo-item ${isCompleted}`);
+    list.setAttribute('data-key', todo.id);
+
+    list.innerHTML = `
+    <input id="${todo.id}" type="checkbox"/>
+    <label for="${todo.id}" class="tick js-tick"></label>
+    <span>${todo.text}</span>
+    `;
+
+    tasksList.appendChild(list);
+}
